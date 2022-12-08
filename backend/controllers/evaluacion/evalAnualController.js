@@ -13,3 +13,24 @@ const productorasContratoPost = (req, res) => {
             res.json(result)
     })
 }
+
+const getDetallesContratoPost = (req, res) => {
+    const {id_client, id_prod, id_cont} = req.body
+
+    const condicion = " WHERE dc.id_client = " + id_client + " dc.id_prod = " + id_prod + " dc.id_cont = " + id_cont 
+
+    selectQuery("dc.id_crz_cult variedad, v.nombre nombre, v.especie especie", " fah_detallescontrato dc, fah_variedadescrz v", condicion, '', (err, result) => {
+        if (err)
+            res.status(500).send(err)
+        else
+            res.json(result)
+    })
+}
+
+const getFormulasPost = (req, res) => {
+    
+}
+
+export const evalAnualController = {
+    productorasContratoPost, getDetallesContratoPost
+}
