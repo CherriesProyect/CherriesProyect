@@ -6,6 +6,7 @@ import { lugarRouter } from './routers/lugarRouter.js';
 import { variedadRouter } from './routers/variedadRouter.js';
 import { progApaRouter } from './routers/progApaRouter.js';
 import { empresasRouters } from './routers/empresasRouters.js';
+import { evalAnualRouter } from './routers/evaluacionRouter/evaluacionAnualRouter.js';
 
 const app = express();
 
@@ -23,5 +24,6 @@ app.use('/api/lugar', lugarRouter)
 app.use('/api/variedad', variedadRouter)
 app.use('/api/empresas', empresasRouters)
 app.use('/api/apadrinamientos', progApaRouter)
+app.use('/api/evaluacion',evalAnualRouter)
 
 export default app
