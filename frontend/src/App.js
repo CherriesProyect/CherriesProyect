@@ -35,6 +35,8 @@ import FormIngrediente from './forms/recetas/FormIngrediente'
 import FormReceta from './forms/recetas/FormReceta'
 import FormEvaluacionAnual from './forms/evaluacion/FormEvaluacionAnual';
 import FormMulti from './forms/evaluacion/FormMulti'
+import FormCriterio from './forms/evaluacion/FormCriterio';
+import FormValoraciones from './forms/evaluacion/FormValoraciones';
 
 function App() {
   return (
@@ -71,6 +73,8 @@ function App() {
                 <Route path='/evaluaciones' element={<Evaluaciones/>} />
                     <Route path='/formevaluacionanual' element={<FormEvaluacionAnual/>}/>
                     <Route path='/formmulti' element={<FormMulti/>} />
+                    <Route path='/formcriterio' element={<FormCriterio/>} />
+                    <Route path='/formvaloraciones' element={<FormValoraciones/>} />
                 <Route path='/recetas' element={<Recetas/>} />
                     <Route path='/formunidad' element={<FormUnidad/>}/>
                     <Route path='/formingrediente' element={<FormIngrediente/>}/>

@@ -6,7 +6,11 @@ import { lugarRouter } from './routers/lugarRouter.js';
 import { variedadRouter } from './routers/variedadRouter.js';
 import { progApaRouter } from './routers/progApaRouter.js';
 import { empresasRouters } from './routers/empresasRouters.js';
+
+//esto hay que acomodarlo luego
 import { evalAnualRouter } from './routers/evaluacionRouter/evaluacionAnualRouter.js';
+import { criterioRouter } from './routers/evaluacionRouter/criterioRouter.js';
+import { valoracionRouter } from './routers/evaluacionRouter/valoracionRouter.js';
 
 const app = express();
 
@@ -24,6 +28,10 @@ app.use('/api/lugar', lugarRouter)
 app.use('/api/variedad', variedadRouter)
 app.use('/api/empresas', empresasRouters)
 app.use('/api/apadrinamientos', progApaRouter)
+
+//esto hay que acomodarlo luego
 app.use('/api/evaluacion',evalAnualRouter)
+app.use('/api/evaluacioncriterio',criterioRouter)
+app.use('/api/evaluacionvaloracion',valoracionRouter)
 
 export default app
