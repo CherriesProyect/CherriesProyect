@@ -49,8 +49,8 @@ export default function FormContrato(){
         if (e.target.name === 'id_prod'){
             setContrato({
                 ...contrato,
-                [e.target.name] : e.target.key,
-                id_prod_pais: e.target.value,
+                id_prod: productoras[e.target.value].id,
+                id_prod_pais: productoras[e.target.value].id_pais
             })
             setVerificarFormPago(true)
         }
@@ -65,9 +65,6 @@ export default function FormContrato(){
         if (e.target.name === 'cultivo'){
             setDetContrato({
                 ...detContrato,
-                id_prod_cont: contrato.id_prod,
-                id_client_cont: contrato.id_client,
-                id_prod_cult: contrato.id_prod,
                 id_crz_cult: cultivos[e.target.value].id_crz_cult,
                 id_cult: cultivos[e.target.value].id_cult,
                 precioxPais: cultivos[e.target.value].precio,
@@ -84,20 +81,33 @@ export default function FormContrato(){
 
     const handleSiguiente = () => {
         const {id_prod, id_client, transp, id_fr_pg} = contrato
+        const id_pais = contrato.id_prod_pais
 
         if ((id_prod === '')||(id_client === '')||(transp === '')||(id_fr_pg === '')){
             alert('Los campos no pueden estar vacios')
             return
         }    
         ///validacion de que no hay contrato activo con la productora escogida
-        
+        axios.post('http://localhost:3001/api/contratos/detalleContrato/cultivosproductora',{id_prod, id_pais}).then(res => setCultivos(res.data))
         setRegistrarDetalle(true)
+        setDetContrato({
+            ...detContrato,
+            id_prod_cont: contrato.id_prod,
+            id_client_cont: contrato.id_client,
+            id_prod_cult: contrato.id_prod,
+        })
     }
 
     const handleConfirm = () => {
-        setDetContrato({...detContrato, monto: detContrato.ctd * detContrato.precioxPais})
-        setMonto((detContrato.ctd * detContrato.precioxPais) + monto)
-        setAbrirModal(true)
+        const {id_crz_cult, ctd} = detContrato
+        
+        if ((id_crz_cult === '')||(ctd ===''))
+            alert('Campos obligatorios vacios')
+        else{
+            setDetContrato({...detContrato, monto: detContrato.ctd * detContrato.precioxPais})
+            setMonto((detContrato.ctd * detContrato.precioxPais) + monto)
+            setAbrirModal(true)
+        }        
     }
     
     const handleAgregarDet = () => {
@@ -165,7 +175,7 @@ export default function FormContrato(){
                                 <Form.Select type='text' name='id_prod' defaultValue = 'Selecciona una opcion' onChange={handleChangeContrato}>
                                     <option hidden>Selecciona una opcion</option>
                                         {productoras.map( (productora) => { 
-                                            return <option key={productora.id} value = {productora.id_pais}>{productora.nombre}</option>
+                                            return <option key={productoras.indexOf(productora)} value = {productoras.indexOf(productora)}>{productora.nombre}</option>
                                         })}        
                                 </Form.Select>
                         </Form.Group>
@@ -223,20 +233,22 @@ export default function FormContrato(){
                             
                         <Form.Group>
                             <Form.Label>Variedad cereza</Form.Label>
-                                <Form.Select className='mt-2' type='text' name='cultivo' defaultValue = 'Selecciona una opcion' onChange={handleChange}>
+                                <Form.Select className='mt-2' type='text' name='cultivo' defaultValue = 'Selecciona una opcion' onChange={handleChangeDetContrato}>
                                     <option hidden>Selecciona una opcion</option>
                                     {cultivos.map( (cultivo) => { 
-                                        return <option key={cultivos.indexOf(cultivo)} value = {cultivos.indexOf(cultivo)}>{cultivo.nombre + cultivo.calibre + cultivo.precio + "$/kg"}</option>
+                                        return <option key={cultivos.indexOf(cultivo)} value = {cultivos.indexOf(cultivo)}>{cultivo.nombre + " " + cultivo.calibre + " " + cultivo.precio + "$/kg"}</option>
                                     })}
                                 </Form.Select>
                         </Form.Group>
 
                         <Form.Group>
-
+                            <Form.Label>Cantidad a comprar en kg</Form.Label>
+                            <Form.Control type='number' name='ctd' min='1' onChange={handleChangeDetContrato} />
                         </Form.Group>
 
                         <Form.Group>
-
+                            <Form.Label>Fecha de envio aproximada {"(opcional)"}</Form.Label>
+                            <Form.Control type='text' name='fe_envio' min='1' onChange={handleChangeDetContrato} />
                         </Form.Group>
                         
                         <Form.Group>
