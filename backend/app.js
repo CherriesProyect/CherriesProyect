@@ -10,6 +10,11 @@ import { pagosRouter } from './routers/pagosRouter.js'
 import { evalAnualRouter } from './routers/evaluaciones/evaluacionAnualRouter.js'
 import { contratosRouter } from './routers/contratosRouter.js'
 
+//esto hay que acomodarlo luego
+import { evalAnualRouter } from './routers/evaluacionRouter/evaluacionAnualRouter.js';
+import { criterioRouter } from './routers/evaluacionRouter/criterioRouter.js';
+import { valoracionRouter } from './routers/evaluacionRouter/valoracionRouter.js';
+
 const app = express();
 
 //settings
@@ -29,5 +34,10 @@ app.use('/api/apadrinamientos', progApaRouter)
 app.use('/api/pagos', pagosRouter)
 app.use('/api/evaluacion',evalAnualRouter)
 app.use('/api/contratos', contratosRouter)
+
+//esto hay que acomodarlo luego
+app.use('/api/evaluacion',evalAnualRouter)
+app.use('/api/evaluacioncriterio',criterioRouter)
+app.use('/api/evaluacionvaloracion',valoracionRouter)
 
 export default app

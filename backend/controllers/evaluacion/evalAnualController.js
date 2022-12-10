@@ -1,15 +1,34 @@
 import insertQuery from "../../utils/insertQuery.js"
 import selectQuery from "../../utils/selectQuery.js"
+<<<<<<< HEAD
+
+const clientesEvaluacionGet = (req, res) => {
+    let clientes = []
+    selectQuery("id, nombre, direc, t_negocio, rgo_inf, rgo_sup, prt_acep, id_pais, id_cdad", 
+        "fah_empresascliente", '', '', (err , result) => {
+            if (err)
+                res.status(500).send(err)
+            else{
+                clientes = result
+                res.json(clientes)
+            }
+        })
+}
+
+=======
+>>>>>>> 34150cdb4263e8f40349269838e6860c7e32411b
 const productorasContratoPost = (req, res) => {
     const {id_client} = req.body
-
     const condicion = " WHERE c.id_client = " + id_client + " AND c.estatus = 'Activo' AND c.id_prod = p.id"
+    let productoras = []
 
     selectQuery("p.id id_prod, p.nombre nombre, c.id id_cont", " fah_empresasproductoras p, fah_contratos c ", condicion, '', (err, result) => {
         if (err)
             res.status(500).send(err)
-        else
-            res.json(result)
+        else{
+            productoras = result
+            res.json(productoras)
+        }
     })
 }
 
@@ -31,5 +50,5 @@ const getFormulasPost = (req, res) => {
 }
 
 export const evalAnualController = {
-    productorasContratoPost, getDetallesContratoPost
+    clientesEvaluacionGet ,productorasContratoPost, getDetallesContratoPost
 }
