@@ -47,7 +47,7 @@ export default function FormEmpresaProductora(){
     }
 
     const handleSubmit = () => {
-        const {id_prod , id_crz, id_cult, anio, prod_log} = prodAnual
+        const {id_prod , id_cult, anio, prod_log} = prodAnual
         if((id_prod === '')||(id_cult === '')||(anio === '')||(prod_log === '')){
             alert('No pueden haber campos vacios')
             return
