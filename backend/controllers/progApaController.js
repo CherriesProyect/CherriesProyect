@@ -33,7 +33,7 @@ const progApaGet = (req, res) => {
     let personas = []
     let productoras = []
 
-    selectQuery("doc_id, nombre1, apellido1", "fah_personas", "", '', (err, result) => {
+    selectQuery("p.doc_id, p.nombre1, p.apellido1, p.nombre2, p.apellido2", "fah_personas p", "", '', (err, result) => {
         if (err)
             res.status(500).send(err)
         else{
@@ -65,14 +65,14 @@ const variedadPost = (req, res) => {
 }
 
 const progApaPost = (req, res) => {
-    const {id_per, id_crz, id_prod, aporte_anual} = req.body
+    const {id_per, id_crz, id_prod, aporte} = req.body
     
     let columnas = "(id_per, id_crz, id_prod, fe_i"
     let valores = "(" + id_per + ", " + id_crz + ", " + id_prod + ", CURDATE()"
     
-    if (aporte_anual != ''){
-        valores = valores  + ", " + aporte_anual
-        columnas = columnas + ", aporte_anual"
+    if (aporte != ''){
+        valores = valores  + ", " + aporte
+        columnas = columnas + ", aporte"
     }
     
     valores = valores + ")"
