@@ -25,7 +25,6 @@ export default function FormCriterio(){
         }
 
         axios.post('http://localhost:3001/api/evaluacioncriterio/registrarcriterio', criterio).then(res => {
-            console.log(criterio)
             if (res.data.error !== undefined){
                 alert(res.data.error + "\n" + res.data.sqlMessage)
                 return

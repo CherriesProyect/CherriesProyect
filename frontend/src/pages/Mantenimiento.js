@@ -28,6 +28,7 @@ export default function Mantenimiento() {
                 <Button href='/formconvenioproveedor' className=' w-25 text-black bg-light rounded-0 border border-2 border-dark'>Convenios con proveedores</Button>
                 <Button href='/formpersona' className=' w-25 text-black bg-light rounded-0 border border-2 border-dark'>Personas</Button>
                 <Button href='/formprogramaapadrinamiento' className=' w-25 text-black bg-light rounded-0 border border-2 border-dark'>Programa de apadrinamiento</Button>    
+                <Button href='/formbeneficio' className=' w-25 text-black bg-light rounded-0 border border-2 border-dark'>Beneficio</Button>    
             </div>
         </>
     )

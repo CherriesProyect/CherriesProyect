@@ -18,12 +18,20 @@ export default function FormUnidad(){
     }
 
     const handleSubmit = () => {
-        const {nombre, tipo, abrev, descrip} = unidad
-        if((nombre === '')||(tipo === '')||
-        (abrev === '')||(descrip === '')){
-            alert('campo vacio')
+        const {nombre, tipo} = unidad
+        if ((nombre === '')||(tipo === '')){
+            alert('Todos los campos deben estar completos')
             return
         }
+
+        axios.post('http://localhost:3001/api/recetas/registrarunidad', unidad).then(res => {
+            if (res.data.error !== undefined){
+                alert(res.data.error + "\n" + res.data.sqlMessage)
+                return
+            }
+            else
+                alert('Registro realizado')
+        }).catch(err => {console.log(err) ; alert('error')})
     }
 
     return(
@@ -36,10 +44,11 @@ export default function FormUnidad(){
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Tipo</Form.Label>
-                        <Form.Select type='text' name='tipo' onChange={handleChange}>
+                        <Form.Select type='text' name='tipo' defaultValue='Selecciona una opcion' onChange={handleChange}>
                             <option disabled>Selecciona una opcion</option>
-                            <option>Volumen</option>
-                            <option>Masa</option>
+                            <option>Líquido</option>
+                            <option>Sólido</option>
+                            <option>Mixto</option>
                         </Form.Select>
                     </Form.Group>
                     <Form.Group>

@@ -37,6 +37,7 @@ import FormEvaluacionAnual from './forms/evaluacion/FormEvaluacionAnual';
 import FormMulti from './forms/evaluacion/FormMulti'
 import FormCriterio from './forms/evaluacion/FormCriterio';
 import FormValoraciones from './forms/evaluacion/FormValoraciones';
+import FormBeneficio from './forms/mantenimiento/FormBeneficio';
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
                     <Route path='/formconvenioproveedor' element={<FormConvenioProveedor/>}/>
                     <Route path='/formprogramaapadrinamiento' element={<FormPrograma/>}/>
                     <Route path='/formpersona' element={<FormPersona/>}/>
+                    <Route path='/formbeneficio' element={<FormBeneficio/>}/>
                 <Route path='/exportimport' element={<ExportImport/>} />
                     <Route path='/formempresacliente' element={<FormEmpresaCliente/>}/>
                     <Route path='/formformapago' element={<FormFormaPago/>}/>

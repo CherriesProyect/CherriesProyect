@@ -6,8 +6,8 @@ export default function FormIngrediente(){
     const[ingrediente , setIngrediente] =useState({
         nombre: '',
         medicion: '',
+        medicion_mix: '',
         descrip: '',
-        medicion_mix: ''
     })
 
     const handleChange = (e) => {
@@ -18,12 +18,20 @@ export default function FormIngrediente(){
     }
 
     const handleSubmit = () => {
-        const {nombre, medicion, descrip, medicion_mix} = ingrediente
-        if((nombre === '')||(medicion === '')||
-        (descrip === '')||(medicion_mix === '')){
+        const {nombre, medicion} = ingrediente
+        if((nombre === '')||(medicion === '')){
             alert('campo vacio')
             return
         }
+
+        axios.post('http://localhost:3001/api/recetas/registraringrediente', ingrediente).then(res => {
+            if (res.data.error !== undefined){
+                alert(res.data.error + "\n" + res.data.sqlMessage)
+                return
+            }
+            else
+                alert('Registro realizado')
+        }).catch(err => {console.log(err) ; alert('error')})
     }
 
     return(
@@ -35,11 +43,11 @@ export default function FormIngrediente(){
                         <Form.Control type='text'name='nombre' onChange={handleChange} />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Tipo</Form.Label>
-                        <Form.Select type='text' name='medicion' defaultValue='Vacio' onChange={handleChange}>
+                        <Form.Label>Medicion</Form.Label>
+                        <Form.Select type='text' name='medicion' defaultValue='Selecciona una opcion' onChange={handleChange}>
                             <option disabled>Selecciona una opcion</option>
-                            <option>Solido</option>
-                            <option>Liquido</option>
+                            <option>Líquido</option>
+                            <option>Sólido</option> 
                         </Form.Select>
                     </Form.Group>
                     <Form.Group>
@@ -47,14 +55,8 @@ export default function FormIngrediente(){
                             <Form.Group className=' w-100' as='textarea' rows={3} name='descrip' onChange={handleChange}>
                             </Form.Group>
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Medicion</Form.Label>
-                        <Form.Select type='text' name='medicion_mix' onChange={handleChange}>
-                            <option disabled>Selecciona una opcion</option>
-                            <option>Volumen</option>
-                            <option>Masa</option>
-                            <option>Ambos</option>
-                        </Form.Select>
+                    <Form.Group className=' mt-2'>
+                        <Form.Check type='radio' label='Medicion mixta' name='medicion_mix' onChange={handleChange}/>
                     </Form.Group>
                     <Button className='mt-4'variant="primary" type="submit">
                             Submit

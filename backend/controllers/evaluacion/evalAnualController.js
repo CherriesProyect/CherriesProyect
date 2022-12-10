@@ -1,6 +1,5 @@
 import insertQuery from "../../utils/insertQuery.js"
 import selectQuery from "../../utils/selectQuery.js"
-<<<<<<< HEAD
 
 const clientesEvaluacionGet = (req, res) => {
     let clientes = []
@@ -15,8 +14,6 @@ const clientesEvaluacionGet = (req, res) => {
         })
 }
 
-=======
->>>>>>> 34150cdb4263e8f40349269838e6860c7e32411b
 const productorasContratoPost = (req, res) => {
     const {id_client} = req.body
     const condicion = " WHERE c.id_client = " + id_client + " AND c.estatus = 'Activo' AND c.id_prod = p.id"

@@ -11,9 +11,18 @@ import { evalAnualRouter } from './routers/evaluaciones/evaluacionAnualRouter.js
 import { contratosRouter } from './routers/contratosRouter.js'
 
 //esto hay que acomodarlo luego
-import { evalAnualRouter } from './routers/evaluacionRouter/evaluacionAnualRouter.js';
+//import { evalAnualRouter } from './routers/evaluacionRouter/evaluacionAnualRouter.js';
+
+//javier evaluacion
 import { criterioRouter } from './routers/evaluacionRouter/criterioRouter.js';
 import { valoracionRouter } from './routers/evaluacionRouter/valoracionRouter.js';
+
+//javier recetas
+import { unidadRouter } from './routers/recetaRouter/unidadRouter.js'
+import { ingredienteRouter } from './routers/recetaRouter/ingredienteRouter.js'
+
+//javier mantenimiento
+import { beneficiosRouter } from './routers/mantenimientoRouter/beneficiosRouter.js'
 
 const app = express();
 
@@ -36,8 +45,17 @@ app.use('/api/evaluacion',evalAnualRouter)
 app.use('/api/contratos', contratosRouter)
 
 //esto hay que acomodarlo luego
-app.use('/api/evaluacion',evalAnualRouter)
+//app.use('/api/evaluacion',evalAnualRouter)
+
+//javier evaluacion
 app.use('/api/evaluacioncriterio',criterioRouter)
 app.use('/api/evaluacionvaloracion',valoracionRouter)
+
+//javier recetas
+app.use('/api/recetas',unidadRouter)
+app.use('/api/recetas',ingredienteRouter)
+
+//javier mantenimiento
+app.use('/api/mantenimiento',beneficiosRouter)
 
 export default app
