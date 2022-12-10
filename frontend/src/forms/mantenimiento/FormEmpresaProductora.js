@@ -17,7 +17,6 @@ export default function FormEmpresaProductora(){
     const [verificarTipo, setVerificarTipo] = useState(false)
     const [verificarPais, setVerificarPais] = useState(false)
 
-    const [solicitarCoops, setSolicitarCoops] = useState(false)
     const [cooperativas, setCooperativas] = useState([])
     
     const [solicitarEmpresas, setSolicitarEmpresas] = useState(false)
@@ -51,7 +50,6 @@ export default function FormEmpresaProductora(){
     }
 
     const handleSubmit = () => {
-        console.log(empresa)
         const {id_pais, id_reg, nombre, tipo, direc, envase} = empresa
 
         if ((nombre === '') || (tipo === '') || (envase === '') ||

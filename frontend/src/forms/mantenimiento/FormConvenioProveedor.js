@@ -60,8 +60,8 @@ export default function FormConvenioProveedor(){
                         <Form.Label>Empresa Productora</Form.Label>
                             <Form.Select type='text' name='id_cat_prod' defaultValue = 'Selecciona una opcion' onChange={handleChange}>
                                 <option hidden>Selecciona una opcion</option>
-                                {productoras.map( (productoras) => { 
-                                    return <option key={productoras.id} value = {productoras.id}>{productoras.nombre}</option>
+                                {productoras.map( (productora) => { 
+                                    return <option key={productora.id} value = {productora.id}>{productora.nombre}</option>
                                 })}        
                             </Form.Select>
                     </Form.Group>

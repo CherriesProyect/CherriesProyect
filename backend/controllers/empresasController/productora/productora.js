@@ -42,6 +42,15 @@ const productorasGet = (req, res) => {
     })    
 }
 
+const productorasPaisesGet = (req, res) => {
+    selectQuery("p.id, p.nombre, p.id_pais", "fah_empresasproductoras p", '', '', (err, result) => {
+        if (err)
+            res.status(500).send(err)
+        else
+            res.json(result)
+    })    
+}
+
 const productoraPost = (req, res) => {
     const {id_pais, id_reg, nombre, tipo, direc, envase, id_asoc, id_coop} = req.body
 
@@ -67,5 +76,5 @@ const productoraPost = (req, res) => {
 
 export const prodController = {
     productoraRegGet, productoraPost, productoraAsocRegGet, productoraCoopPost, 
-    productoraPost, productorasGet
+    productoraPost, productorasGet, productorasPaisesGet
 }
