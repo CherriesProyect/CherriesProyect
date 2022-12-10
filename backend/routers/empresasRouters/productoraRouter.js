@@ -20,5 +20,5 @@ router.get('/registro/regiones', prodController.productoraRegGet)
 router.post('/registro/asocRegs', prodController.productoraAsocRegGet)
 router.get('/registro/cooperativas', prodController.productoraCoopPost)
 router.post('/registro', prodController.productoraPost)
-
+router.get('/productora/paises', prodController.productorasPaisesGet)
 export const productoraRouter = router
