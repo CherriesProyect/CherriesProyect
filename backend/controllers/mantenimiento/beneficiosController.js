@@ -42,7 +42,7 @@ const beneficioPost = (req,res) => {
         "','" + precio + "','" + descrip + "'"
     const condicion = " WHERE id_prove = " + id_prove
 
-    insertQuery("beneficios",condicion,"(id_prove,id_conv,id,nombre,precio,descrip)",valores,(err,result) => {
+    insertQuery("beneficios",condicion,"(id,id_prove,id_conv,nombre,precio,descrip)",valores,(err,result) => {
         if(err){
             if(err.code === 'ER_DUP_ENTRY'){
                 const {code,sqlMessage} = err
