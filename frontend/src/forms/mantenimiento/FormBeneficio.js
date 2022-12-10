@@ -62,14 +62,13 @@ export default function FormBeneficio(){
 
     const handleSubmit = () => {
         let {id_prove, id_conv, nombre, precio, descrip} = beneficios
-        id_conv = convenios.id
 
         if ((id_prove === '')||(id_conv === '')||(nombre === '')||(precio === '')){
             alert('Todos los campos deben estar completos')
             return
         }
 
-        axios.post('http://localhost:3001/api/evaluacioncriterio/registrarbeneficios', {id_prove,id_conv,nombre,precio,descrip}).then(res => {
+        axios.post('http://localhost:3001/api/mantenimiento/registrarbeneficios', {id_prove,id_conv,nombre,precio,descrip}).then(res => {
             if (res.data.error !== undefined){
                 alert(res.data.error + "\n" + res.data.sqlMessage)
                 return
@@ -102,7 +101,7 @@ export default function FormBeneficio(){
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Convenios</Form.Label>
-                        <Form.Select className='mt-2' type='text' name='id_client' defaultValue= 'Selecciona una opcion' onChange={handleChange}>
+                        <Form.Select className='mt-2' type='text' name='id_conv' defaultValue= 'Selecciona una opcion' onChange={handleChange}>
                                 <option hidden>Selecciona una opcion</option>
                                 {convenios.map( (convenio) => {
                                     return(<option key={convenio.id} value={convenio.id}>{convenio.nombre}</option>)

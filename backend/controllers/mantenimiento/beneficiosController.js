@@ -38,12 +38,11 @@ const getConveniosAsoPost = (req,res) => {
 const beneficioPost = (req,res) => {
     const{id_prove,id_conv,nombre,precio,descrip} = req.body
 
-    valores = "'" + id_prove + "','" + id_conv + "','" + nombre +
+    const valores = "'" + id_prove + "','" + id_conv + "','" + nombre +
         "','" + precio + "','" + descrip + "'"
+    const condicion = " WHERE id_prove = " + id_prove
 
-    console.log(valores)
-    /*
-    insertQuery('beneficios','','(id_prove,id_conv,id,nombre,precio,descrip)',valores, (err,result) => {
+    insertQuery("beneficios",condicion,"(id_prove,id_conv,id,nombre,precio,descrip)",valores,(err,result) => {
         if(err){
             if(err.code === 'ER_DUP_ENTRY'){
                 const {code,sqlMessage} = err
@@ -55,7 +54,6 @@ const beneficioPost = (req,res) => {
         else
             res.json(result)
     })
-    */
     
 }
 
