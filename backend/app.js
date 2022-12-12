@@ -20,6 +20,7 @@ import { valoracionRouter } from './routers/evaluacionRouter/valoracionRouter.js
 //javier recetas
 import { unidadRouter } from './routers/recetaRouter/unidadRouter.js'
 import { ingredienteRouter } from './routers/recetaRouter/ingredienteRouter.js'
+import { recetasRouter } from './routers/recetaRouter/recetaRouter.js'
 
 //javier mantenimiento
 import { beneficiosRouter } from './routers/mantenimientoRouter/beneficiosRouter.js'
@@ -54,6 +55,7 @@ app.use('/api/evaluacionvaloracion',valoracionRouter)
 //javier recetas
 app.use('/api/recetas',unidadRouter)
 app.use('/api/recetas',ingredienteRouter)
+app.use('/api/registrareceta',recetasRouter)
 
 //javier mantenimiento
 app.use('/api/mantenimiento',beneficiosRouter)
